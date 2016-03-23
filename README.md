@@ -1,24 +1,18 @@
 # Project GK
 
 ### Description
-  - todo;
-  - 
+  - Racing Game with shooting mechanics (Mario Kart-like)
 
 ### Version
-0.0.0
+0.0.1
 
 ### Technologies
 
 Project uses a number of open source projects to work properly:
 
 * [Unity 5](https://unity3d.com)
-* todo;
-
-### Installation
-
-```
-todo;
-```
+* [Blender](https://www.blender.org/)
+* MapZone2
 
 ### Repo
 
