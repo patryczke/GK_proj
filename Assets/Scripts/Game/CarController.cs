@@ -7,9 +7,11 @@ public class CarController : MonoBehaviour {
     public float brakingPower = 10;
     public float maxSpeed = 20;
     public float turnSpeed = 10;
+    public float downforcePower = 10;
+    public bool allowFlip;
     Vector3 rotation = new Vector3(0,100,0);
 
-    float actualSpeed;
+    public float actualSpeed;
     float actualSqrSpeed;
 
     float defaultAccelerationPower;
@@ -27,7 +29,12 @@ public class CarController : MonoBehaviour {
         defaultAccelerationPower = accelerationPower;
 	}
 	
-	// Update is called once per frame
+    void FixedUpdate()
+    {
+        playersRigidbody.AddForceAtPosition(-transform.up * downforcePower, transform.position);
+    }
+    
+    // Update is called once per frame
 	void Update () {
         if (isGrounded())
         {
