@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Game\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Game\CarController.cs" />
     <Compile Include="Assets\Scripts\Game\WheelVisual.cs" />
+    <Compile Include="Assets\Scripts\Utility\ChangeCar.cs" />
     <Compile Include="Assets\Scripts\Utility\GroundType.cs" />
     <Compile Include="Assets\Scripts\Utility\Restart.cs" />
   </ItemGroup>

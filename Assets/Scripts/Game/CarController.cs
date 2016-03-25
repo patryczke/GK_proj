@@ -8,7 +8,8 @@ public class CarController : MonoBehaviour {
     public float maxSpeed = 20;
     public float turnSpeed = 10;
     public float downforcePower = 10;
-    public bool allowFlip;
+    public GameObject cameraPoint;
+
     Vector3 rotation = new Vector3(0,100,0);
 
     public float actualSpeed;

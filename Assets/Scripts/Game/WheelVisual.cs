@@ -6,9 +6,10 @@ public class WheelVisual : MonoBehaviour {
     public GameObject[] backWheels;
     public float maxSteerAngle = 15;
     public CarController car;
+    Vector3 wheelTransformAtStart;
 	// Use this for initialization
 	void Start () {
-	
+        wheelTransformAtStart = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 	}
 
     // Update is called once per frame
@@ -19,14 +20,14 @@ public class WheelVisual : MonoBehaviour {
             //front wheels are steerable
             foreach (GameObject wheel in frontWheels)
             {
-                wheel.transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, car.transform.eulerAngles.y + Input.GetAxis("Horizontal") * maxSteerAngle * car.turnSpeed, car.transform.eulerAngles.z + 90);
+                wheel.transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, 90 + wheelTransformAtStart.y + car.transform.eulerAngles.y + Input.GetAxis("Horizontal") * maxSteerAngle * car.turnSpeed, car.transform.eulerAngles.z + 90);
             }
         }
         else
         {
             foreach (GameObject wheel in frontWheels)
             {
-                wheel.transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, car.transform.eulerAngles.y, car.transform.eulerAngles.z + 90);
+                wheel.transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, wheelTransformAtStart.y + car.transform.eulerAngles.y + 90, car.transform.eulerAngles.z + 90);
             }
         }
     }
