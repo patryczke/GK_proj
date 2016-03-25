@@ -86,7 +86,7 @@ public class CarController : MonoBehaviour {
         }
     }
 
-    bool isGrounded()
+    public bool isGrounded()
     {
         if (!Physics.Linecast(playersRigidbody.position, groundCheck.transform.position))
         {
