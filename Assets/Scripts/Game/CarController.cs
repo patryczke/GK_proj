@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CarController : MonoBehaviour {
+public class CarController : MonoBehaviour
+{
     Rigidbody playersRigidbody;
-    public float accelerationPower = 10;
-    public float brakingPower = 10;
+    public float accelerationPower = 100;
+    public float brakingPower = 12;
     public float maxSpeed = 20;
-    public float turnSpeed = 10;
-    public float downforcePower = 10;
+    public float turnSpeed = 2.5f;
+    public float angularSpeedMax = 2;
     public GameObject cameraPoint;
 
-    Vector3 rotation = new Vector3(0,100,0);
+    Vector3 rotation = new Vector3(0, 100, 0);
 
     public float actualSpeed;
     float actualSqrSpeed;
+    Vector3 angularSpeed;
 
     float defaultAccelerationPower;
     float defaultBrakingPower;
@@ -21,29 +23,28 @@ public class CarController : MonoBehaviour {
     float defaultTurnSpeed;
 
     public GameObject groundCheck;
+
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         playersRigidbody = GetComponent<Rigidbody>();
         defaultMaxSpeed = maxSpeed;
         defaultTurnSpeed = turnSpeed;
         defaultBrakingPower = brakingPower;
         defaultAccelerationPower = accelerationPower;
-	}
-	
+    }
+
     void FixedUpdate()
     {
-        playersRigidbody.AddForceAtPosition(-transform.up * downforcePower, transform.position);
-    }
-    
-    // Update is called once per frame
-	void Update () {
         if (isGrounded())
         {
             actualSpeed = playersRigidbody.velocity.magnitude;
             actualSqrSpeed = playersRigidbody.velocity.sqrMagnitude;
-            if (Input.GetAxis("Vertical") != 0)
+            angularSpeed = playersRigidbody.angularVelocity;
+            if (drive() != 0)
             {
-                if (Input.GetAxis("Vertical") > 0)
+                if (drive() > 0)
                 {
                     playersRigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * accelerationPower);
                 }
@@ -52,28 +53,58 @@ public class CarController : MonoBehaviour {
                     playersRigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * brakingPower);
                 }
             }
-            if (Input.GetAxis("Horizontal") != 0)
+            if ((angularSpeed.y >= angularSpeedMax) || (angularSpeed.y <= -angularSpeedMax))
             {
-                //playersRigidbody.AddTorque(transform.up * Input.GetAxis("Horizontal") * turnSpeed);
-                Quaternion deltaRotation = Quaternion.Euler(rotation * Input.GetAxis("Horizontal") * turnSpeed / 100);
-                playersRigidbody.MoveRotation(playersRigidbody.rotation * deltaRotation);
-            }
-            if (playersRigidbody.velocity.magnitude >= maxSpeed)
-            {
-                playersRigidbody.velocity = playersRigidbody.velocity.normalized * maxSpeed;
+                if (angularSpeed.y > 0)
+                {
+                    angularSpeed.y = angularSpeedMax;
+                }
+                else
+                {
+                    angularSpeed.y = -angularSpeedMax;
+                }
+                playersRigidbody.angularVelocity = new Vector3(angularSpeed.x, angularSpeed.y, angularSpeed.z);
             }
         }
-	}
+        else
+        {
+            playersRigidbody.angularVelocity = Vector3.zero;
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (playersRigidbody.velocity.magnitude >= maxSpeed)
+        {
+            playersRigidbody.velocity = playersRigidbody.velocity.normalized * maxSpeed;
+        }
+        if (turn() != 0)
+        {
+            playersRigidbody.AddTorque(transform.up * Input.GetAxis("Horizontal") * turnSpeed * 10);
+        }
+    }
+
+
+    float turn()
+    {
+        return Input.GetAxis("Horizontal");
+    }
+
+    float drive()
+    {
+        return Input.GetAxis("Vertical");
+    }
 
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.GetComponent<GroundType>())
+        if (col.gameObject.GetComponent<GroundType>())
         {
             if (col.gameObject.GetComponent<GroundType>().type == GroundTypes.Grass)
             {
                 accelerationPower = defaultAccelerationPower / 8;
                 brakingPower = defaultBrakingPower * 0.9f;
-                turnSpeed = defaultTurnSpeed / 2;
+                turnSpeed = defaultTurnSpeed / 1.5f;
                 maxSpeed = defaultMaxSpeed;
             }
             else
