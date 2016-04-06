@@ -12,6 +12,7 @@ public class CarController : MonoBehaviour
     public GameObject cameraPoint;
 
     Vector3 rotation = new Vector3(0, 100, 0);
+    Vector3 targetRotation;
 
     public float actualSpeed;
     float actualSqrSpeed;
@@ -21,29 +22,35 @@ public class CarController : MonoBehaviour
     float defaultBrakingPower;
     float defaultMaxSpeed;
     float defaultTurnSpeed;
+    float defaultDrag;
 
     public GameObject groundCheck;
-
+    bool grounded = false;
 
     // Use this for initialization
     void Start()
     {
+        targetRotation = transform.rotation.eulerAngles;
         playersRigidbody = GetComponent<Rigidbody>();
         defaultMaxSpeed = maxSpeed;
         defaultTurnSpeed = turnSpeed;
         defaultBrakingPower = brakingPower;
         defaultAccelerationPower = accelerationPower;
+        defaultDrag = playersRigidbody.drag;
+        playersRigidbody.centerOfMass -= new Vector3(0, 1.0f, 0);
     }
 
     void FixedUpdate()
     {
         if (isGrounded())
         {
+            playersRigidbody.AddForce(-transform.up*100f);
             actualSpeed = playersRigidbody.velocity.magnitude;
             actualSqrSpeed = playersRigidbody.velocity.sqrMagnitude;
             angularSpeed = playersRigidbody.angularVelocity;
             if (drive() != 0)
             {
+                playersRigidbody.drag = defaultDrag;
                 if (drive() > 0)
                 {
                     playersRigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * accelerationPower);
@@ -52,6 +59,10 @@ public class CarController : MonoBehaviour
                 {
                     playersRigidbody.AddForce(transform.forward * Input.GetAxis("Vertical") * brakingPower);
                 }
+            }
+            else
+            {
+                playersRigidbody.drag = defaultDrag / 20f;
             }
             if ((angularSpeed.y >= angularSpeedMax) || (angularSpeed.y <= -angularSpeedMax))
             {
@@ -65,24 +76,27 @@ public class CarController : MonoBehaviour
                 }
                 playersRigidbody.angularVelocity = new Vector3(angularSpeed.x, angularSpeed.y, angularSpeed.z);
             }
+            if (playersRigidbody.velocity.magnitude >= maxSpeed)
+            {
+                playersRigidbody.velocity = playersRigidbody.velocity.normalized * maxSpeed;
+            }
+            if (turn() != 0)
+            {
+                playersRigidbody.AddTorque(transform.up * turn() * turnSpeed * 10);
+            }
         }
         else
         {
-            playersRigidbody.angularVelocity = Vector3.zero;
+            //playersRigidbody.angularVelocity = Vector3.zero;
+            playersRigidbody.drag = 0;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation.x,transform.eulerAngles.y,targetRotation.z), Time.fixedDeltaTime * 10f);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playersRigidbody.velocity.magnitude >= maxSpeed)
-        {
-            playersRigidbody.velocity = playersRigidbody.velocity.normalized * maxSpeed;
-        }
-        if (turn() != 0)
-        {
-            playersRigidbody.AddTorque(transform.up * Input.GetAxis("Horizontal") * turnSpeed * 10);
-        }
+        grounded = isGrounded();
     }
 
 
@@ -102,7 +116,7 @@ public class CarController : MonoBehaviour
         {
             if (col.gameObject.GetComponent<GroundType>().type == GroundTypes.Grass)
             {
-                accelerationPower = defaultAccelerationPower / 8;
+                accelerationPower = defaultAccelerationPower / 2;
                 brakingPower = defaultBrakingPower * 0.9f;
                 turnSpeed = defaultTurnSpeed / 1.5f;
                 maxSpeed = defaultMaxSpeed;
@@ -119,7 +133,7 @@ public class CarController : MonoBehaviour
 
     public bool isGrounded()
     {
-        if (!Physics.Linecast(playersRigidbody.position, groundCheck.transform.position))
+        if (!Physics.Linecast(transform.position, groundCheck.transform.position))
         {
             return false;
         }

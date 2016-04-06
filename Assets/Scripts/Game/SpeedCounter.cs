@@ -6,26 +6,25 @@ public class SpeedCounter : MonoBehaviour {
     Text speedText;
     float speed;
     CarController car;
+    CarControllerWheelCollider carW;
     CameraFollow mainCamera;
 
 	// Use this for initialization
 	void Start () {
         speedText = GetComponent<Text>();
         mainCamera = FindObjectOfType<CameraFollow>();
-        if (mainCamera.target.transform.parent.GetComponent<CarController>())
-        {
-            car = mainCamera.target.transform.parent.GetComponent<CarController>();
-            speed = car.actualSpeed;
-        }
+
+            carW = mainCamera.target.transform.parent.GetComponent<CarControllerWheelCollider>();
+            speed = carW.actualSpeed;
+        
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (mainCamera.target.transform.parent.GetComponent<CarController>())
+        if (carW)
         {
-            car = mainCamera.target.transform.parent.GetComponent<CarController>();
-            speed = car.actualSpeed;
+            speed = carW.actualSpeed;
         }
         speedText.text = ((int)speed).ToString();
     }

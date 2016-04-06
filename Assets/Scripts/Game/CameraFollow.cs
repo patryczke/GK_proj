@@ -29,6 +29,11 @@ public class CameraFollow : MonoBehaviour
     public float heightDamping = 2.0f;
     public float rotationDamping = 3.0f;
 
+    void Start()
+    {
+
+    }
+
     void LateUpdate()
     {
         // Early out if we don't have a target
