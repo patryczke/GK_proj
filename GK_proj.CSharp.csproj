@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Game\SpeedCounter.cs" />
     <Compile Include="Assets\Scripts\Game\WheelVisual.cs" />
     <Compile Include="Assets\Scripts\Utility\ChangeCar.cs" />
+    <Compile Include="Assets\Scripts\Utility\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Utility\GroundType.cs" />
     <Compile Include="Assets\Scripts\Utility\ResetCar.cs" />
     <Compile Include="Assets\Scripts\Utility\Restart.cs" />
