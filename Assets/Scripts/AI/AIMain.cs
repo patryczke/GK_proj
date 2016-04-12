@@ -87,7 +87,10 @@ public class AIMain : MonoBehaviour
     {
         // Call the funtion to determine the desired input values for the car. This essentially steers and
         // applies gas to the engine.
-        NavigateTowardsWaypoint();
+        if (waypointContainer != null)
+        {
+            NavigateTowardsWaypoint();
+        }
 
         float motor = 0;
         motor = accelerationPower * inputTorque;

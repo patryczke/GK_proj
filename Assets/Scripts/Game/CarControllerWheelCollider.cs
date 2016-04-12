@@ -85,7 +85,14 @@ public class CarControllerWheelCollider : MonoBehaviour {
             }
             else
             {
-                playersRigidbody.drag = 1f;
+                if (isGroundedWheels())
+                {
+                    playersRigidbody.drag = 1f;
+                }
+                else
+                {
+                    playersRigidbody.drag = 0f;
+                }
                 if (playersRigidbody.velocity.magnitude > 0f)
                 {
                     wheel.motorTorque = -brakingPower * 2f;

@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\RocketScript.cs" />
     <Compile Include="Assets\Scripts\AI\AIMain.cs" />
     <Compile Include="Assets\Scripts\AI\Waypoint.cs" />
     <Compile Include="Assets\Scripts\AI\WaypointDrawer.cs" />
