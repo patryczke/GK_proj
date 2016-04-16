@@ -18,7 +18,7 @@ public class CustomPickupCollider : MonoBehaviour {
             bool isCollisionEnter = CheckCustomCollision(closestObj);
             if (isCollisionEnter) {
                 //TODO: do custom stuff on collision detection
-                OnCollisionEnterCustom();
+                OnCollisionEnterCustom(closestObj);
             }
         }
 
@@ -77,10 +77,10 @@ public class CustomPickupCollider : MonoBehaviour {
         return false;
     }
 
-    private void OnCollisionEnterCustom() {
+    private void OnCollisionEnterCustom(GameObject obj) {
 
-       if (gameObject.GetComponent<PickupHolder>() != null) {
-            gameObject.GetComponent<PickupHolder>().RandomPickup();
+       if (obj.gameObject.transform.parent.GetComponent<PickupHolder>() != null) {
+            obj.gameObject.transform.parent.GetComponent<PickupHolder>().RandomPickup();
        }
 
        Destroy(gameObject);
