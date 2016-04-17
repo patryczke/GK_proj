@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Game\Rotator.cs" />
     <Compile Include="Assets\Scripts\Game\SpeedCounter.cs" />
     <Compile Include="Assets\Scripts\Game\WheelVisual.cs" />
+    <Compile Include="Assets\Scripts\OwnImpls\CustomPickupCollider.cs" />
     <Compile Include="Assets\Scripts\Particles\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\Particles\ParticleGoUp.cs" />
     <Compile Include="Assets\Scripts\Particles\ParticleMain.cs" />

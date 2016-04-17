@@ -20,11 +20,11 @@ public class PickupBob: MonoBehaviour
         transform.Rotate(Vector3.forward, Time.deltaTime * rotationSpeed);
         if (timer <= 1)
         {
-            transform.position = new Vector3(transform.position.x, defaultPosition.y + timer * bobHeight);
+            transform.position = new Vector3(transform.position.x, defaultPosition.y + timer * bobHeight,transform.position.z);
         }
         else if (timer <= 2)
         {
-            transform.position = new Vector3(transform.position.x, defaultPosition.y + 1 * bobHeight - (timer - 1) * bobHeight);
+            transform.position = new Vector3(transform.position.x, defaultPosition.y + 1 * bobHeight - (timer - 1) * bobHeight, transform.position.z);
         }
         else
         {
