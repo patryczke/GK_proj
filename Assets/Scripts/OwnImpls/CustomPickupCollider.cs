@@ -28,7 +28,7 @@ public class CustomPickupCollider : MonoBehaviour {
         GameObject closestObject = null;
         GameObject[] withTagObjects = GameObject.FindGameObjectsWithTag(PICKUPABLE_GAMEOBJECTS_TAG);
 
-        if (withTagObjects != null || withTagObjects.Length > 0) {
+        if (withTagObjects != null && withTagObjects.Length > 0) {
             float closestDistance = Mathf.Infinity;
             
             Vector3 myPosition = gameObject.transform.position;
@@ -61,13 +61,6 @@ public class CustomPickupCollider : MonoBehaviour {
         if ((objBounds.max.z >= thisBounds.min.z && objBounds.max.z <= thisBounds.max.z) || (objBounds.min.z >= thisBounds.min.z && objBounds.min.z <= thisBounds.max.z)) {
             if ((objBounds.max.y >= thisBounds.min.y && objBounds.max.y <= thisBounds.max.y) || (objBounds.min.y >= thisBounds.min.y && objBounds.min.y <= thisBounds.max.y)) {
                 if ((objBounds.max.x >= thisBounds.min.x && objBounds.max.x <= thisBounds.max.x) || (objBounds.min.x >= thisBounds.min.x && objBounds.min.x <= thisBounds.max.x)) {
-
-                    return true;
-                }
-            }
-        } else if ((thisBounds.max.z >= objBounds.min.z && thisBounds.max.z <= objBounds.max.z) || (thisBounds.min.z >= objBounds.min.z && thisBounds.min.z <= objBounds.max.z)) {
-            if ((thisBounds.max.y >= objBounds.min.y && thisBounds.max.y <= objBounds.max.y) || (thisBounds.min.y >= objBounds.min.y && thisBounds.min.y <= objBounds.max.y)) {
-                if ((thisBounds.max.x >= objBounds.min.x && thisBounds.max.x <= objBounds.max.x) || (thisBounds.min.x >= objBounds.min.x && thisBounds.min.x <= objBounds.max.x)) {
 
                     return true;
                 }
