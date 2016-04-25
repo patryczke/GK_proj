@@ -74,13 +74,27 @@ public class CarControllerWheelCollider : MonoBehaviour {
             if(motor > 0)
             {
                 wheel.brakeTorque = 0f;
-                playersRigidbody.drag = 0f;
+                if (isGroundedWheels())
+                {
+                    playersRigidbody.drag = 0f;
+                }
+                else
+                {
+                    playersRigidbody.AddForce(-transform.up * 100);
+                }
                 wheel.motorTorque = motor;
             }
             else if (motor < 0)
             {
                 wheel.brakeTorque = 0f;
-                playersRigidbody.drag = 0f;
+                if (isGroundedWheels())
+                {
+                    playersRigidbody.drag = 0f;
+                }
+                else
+                {
+                    playersRigidbody.AddForce(-transform.up * 100);
+                }
                 wheel.motorTorque = motor * brakingPower;
             }
             else
@@ -91,7 +105,7 @@ public class CarControllerWheelCollider : MonoBehaviour {
                 }
                 else
                 {
-                    playersRigidbody.drag = 0f;
+                    playersRigidbody.AddForce(-transform.up * 100);
                 }
                 if (playersRigidbody.velocity.magnitude > 0f)
                 {

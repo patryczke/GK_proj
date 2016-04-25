@@ -15,7 +15,7 @@ public class ResetCar : MonoBehaviour {
         {
             if (wasGrounded)
             {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 transform.position = new Vector3(transform.position.x, transform.position.y + resetHeight, transform.position.z);
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 wasGrounded = false;
@@ -23,7 +23,7 @@ public class ResetCar : MonoBehaviour {
         }
         if(wasGrounded == false)
         {
-            if(GetComponent<CarController>().isGrounded())
+            if(GetComponent<CarControllerWheelCollider>().isGroundedWheels())
             {
                 wasGrounded = true;
             }

@@ -73,8 +73,10 @@
     <Compile Include="Assets\Scripts\Game\CarController.cs" />
     <Compile Include="Assets\Scripts\Game\CarControllerWheelCollider.cs" />
     <Compile Include="Assets\Scripts\Game\Mover.cs" />
+    <Compile Include="Assets\Scripts\Game\RaceTimer.cs" />
     <Compile Include="Assets\Scripts\Game\Rotator.cs" />
     <Compile Include="Assets\Scripts\Game\SpeedCounter.cs" />
+    <Compile Include="Assets\Scripts\Game\Speedometer.cs" />
     <Compile Include="Assets\Scripts\Game\WheelVisual.cs" />
     <Compile Include="Assets\Scripts\OwnImpls\CustomPickupCollider.cs" />
     <Compile Include="Assets\Scripts\Particles\LookAtCamera.cs" />

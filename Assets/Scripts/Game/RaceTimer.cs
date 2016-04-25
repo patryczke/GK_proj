@@ -34,8 +34,8 @@ public class RaceTimer : MonoBehaviour
         long seconds = _timeElapsed / 1000;
         _timeElapsed -= seconds * 1000;
         long milis = _timeElapsed;
-
-        timerText.text = "" + minutes + ":" + seconds + ":" + milis;
+        timerText.text = String.Format("{0:00}:{1:00}:{2:000}" ,minutes ,seconds, milis);
+        
 
     }
 
