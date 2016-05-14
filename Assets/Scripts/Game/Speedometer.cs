@@ -38,7 +38,7 @@ public class Speedometer : MonoBehaviour
         speedometerPointerCmp.transform.eulerAngles.Set(0.0f, 0.0f, POINTER_INIT_Z_ROTATION);
 
         mainCamera = FindObjectOfType<CameraFollow>();
-        carW = mainCamera.target.transform.parent.GetComponent<CarControllerWheelCollider>();
+        carW = FindObjectOfType<CarControllerWheelCollider>();
         speedValue = carW.actualSpeed;
     }
     void Update() {

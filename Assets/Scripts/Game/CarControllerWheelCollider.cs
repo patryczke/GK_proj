@@ -12,6 +12,8 @@ public class CarControllerWheelCollider : MonoBehaviour {
     public float turnSpeed = 2.5f;
     public GameObject cameraPoint;
 
+    bool drivable = false;
+
     public float actualSpeed;
     float actualSqrSpeed;
     Vector3 angularSpeed;
@@ -154,12 +156,18 @@ public class CarControllerWheelCollider : MonoBehaviour {
 
     public float turn()
     {
-        return Input.GetAxis("Horizontal");
+        if(drivable)
+            return Input.GetAxis("Horizontal");
+        else
+            return 0;
     }
 
     public float drive()
     {
-        return Input.GetAxis("Vertical");
+        if (drivable)
+            return Input.GetAxis("Vertical");
+        else
+            return 0;
     }
 
     void OnCollisionEnter(Collision col)
@@ -195,5 +203,15 @@ public class CarControllerWheelCollider : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    public void SwitchOn()
+    {
+        drivable = true;
+    }
+
+    public void SwitchOff()
+    {
+        drivable = false;
     }
 }

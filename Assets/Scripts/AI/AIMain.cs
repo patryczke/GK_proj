@@ -102,18 +102,39 @@ public class AIMain : MonoBehaviour
             if (motor > 0)
             {
                 wheel.brakeTorque = 0f;
-                playersRigidbody.drag = 0f;
+                if (isGroundedWheels())
+                {
+                    playersRigidbody.drag = 0f;
+                }
+                else
+                {
+                    playersRigidbody.AddForce(-transform.up * 100);
+                }
                 wheel.motorTorque = motor;
             }
             else if (motor < 0)
             {
                 wheel.brakeTorque = 0f;
-                playersRigidbody.drag = 0f;
+                if (isGroundedWheels())
+                {
+                    playersRigidbody.drag = 0f;
+                }
+                else
+                {
+                    playersRigidbody.AddForce(-transform.up * 100);
+                }
                 wheel.motorTorque = motor * brakingPower;
             }
             else
             {
-                playersRigidbody.drag = 1f;
+                if (isGroundedWheels())
+                {
+                    playersRigidbody.drag = 1f;
+                }
+                else
+                {
+                    playersRigidbody.AddForce(-transform.up * 100);
+                }
                 if (playersRigidbody.velocity.magnitude > 0f)
                 {
                     wheel.motorTorque = -brakingPower * 2f;
@@ -201,5 +222,18 @@ public class AIMain : MonoBehaviour
             }
         }
         // }
+    }
+
+    public bool isGroundedWheels()
+    {
+        WheelHit hit;
+        foreach (WheelCollider wheel in drivingWheels)
+        {
+            if (wheel.GetGroundHit(out hit))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

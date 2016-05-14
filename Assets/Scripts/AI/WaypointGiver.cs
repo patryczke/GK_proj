@@ -7,18 +7,30 @@ public class WaypointGiver : MonoBehaviour {
 	// Use this for initialization
     void Awake()
     {
-        AICars = FindObjectsOfType<AIMain>();
+
+       
     }
 	void Start () {
         waypoints = GetComponentsInChildren<Transform>();
-        foreach(AIMain car in AICars)
-        {
-            car.SetWaypoints(waypoints);
-        }
+        StartCoroutine(Delay());
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(3f);
+        AICars = FindObjectsOfType<AIMain>();
+        foreach (AIMain car in AICars)
+        {
+            car.SetWaypoints(waypoints);
+            car.waypointContainer = transform;
+        }
+        CarControllerWheelCollider player = FindObjectOfType<CarControllerWheelCollider>();
+
+        player.SwitchOn();
+    }
 }

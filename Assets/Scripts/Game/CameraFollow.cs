@@ -31,7 +31,7 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-
+        target = FindObjectOfType<CarControllerWheelCollider>().cameraPoint.transform;
     }
 
     void LateUpdate()
