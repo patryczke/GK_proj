@@ -63,6 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Countdown.cs" />
+    <Compile Include="Assets\ParticleExplosion.cs" />
+    <Compile Include="Assets\PickupText.cs" />
     <Compile Include="Assets\Scripts\AI\AIMain.cs" />
     <Compile Include="Assets\Scripts\AI\AISpawner.cs" />
     <Compile Include="Assets\Scripts\AI\Waypoint.cs" />

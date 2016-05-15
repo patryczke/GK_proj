@@ -4,6 +4,7 @@ using System.Collections;
 public class RocketScript : MonoBehaviour {
     RaycastHit hit;
     Ray ray;
+    public GameObject explosion;
 	// Use this for initialization
 	void Start () {
         ray = new Ray(transform.position, transform.forward);
@@ -20,6 +21,8 @@ public class RocketScript : MonoBehaviour {
             if(hit.collider.gameObject.GetComponent<AIMain>() != null || hit.collider.gameObject.GetComponent<CarControllerWheelCollider>() != null)
             {
                 Debug.Log("Hit car");
+                hit.rigidbody.AddForce(hit.transform.up*20000, ForceMode.Impulse);
+                Instantiate(explosion, hit.transform.position,transform.rotation);
             }
             else
             {
