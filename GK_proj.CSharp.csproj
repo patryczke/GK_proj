@@ -63,10 +63,46 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Countdown.cs" />
+    <Compile Include="Assets\ParticleExplosion.cs" />
+    <Compile Include="Assets\PickupText.cs" />
+    <Compile Include="Assets\Scripts\AI\AIMain.cs" />
+    <Compile Include="Assets\Scripts\AI\AISpawner.cs" />
+    <Compile Include="Assets\Scripts\AI\Waypoint.cs" />
+    <Compile Include="Assets\Scripts\AI\WaypointDrawer.cs" />
+    <Compile Include="Assets\Scripts\AI\WaypointGiver.cs" />
+    <Compile Include="Assets\Scripts\Game\AntiRollBar.cs" />
     <Compile Include="Assets\Scripts\Game\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Game\CarController.cs" />
+    <Compile Include="Assets\Scripts\Game\CarControllerWheelCollider.cs" />
+    <Compile Include="Assets\Scripts\Game\Mover.cs" />
+    <Compile Include="Assets\Scripts\Game\PlayerSpawner.cs" />
+    <Compile Include="Assets\Scripts\Game\RaceTimer.cs" />
+    <Compile Include="Assets\Scripts\Game\Rotator.cs" />
+    <Compile Include="Assets\Scripts\Game\SpeedCounter.cs" />
+    <Compile Include="Assets\Scripts\Game\Speedometer.cs" />
+    <Compile Include="Assets\Scripts\Game\WheelVisual.cs" />
+    <Compile Include="Assets\Scripts\OwnImpls\CustomPickupCollider.cs" />
+    <Compile Include="Assets\Scripts\Particles\LookAtCamera.cs" />
+    <Compile Include="Assets\Scripts\Particles\ParticleGoUp.cs" />
+    <Compile Include="Assets\Scripts\Particles\ParticleMain.cs" />
+    <Compile Include="Assets\Scripts\Pickups\Pickup.cs" />
+    <Compile Include="Assets\Scripts\Pickups\PickupBob.cs" />
+    <Compile Include="Assets\Scripts\Pickups\PickupDestroyer.cs" />
+    <Compile Include="Assets\Scripts\Pickups\PickupHolder.cs" />
+    <Compile Include="Assets\Scripts\Pickups\PickupManager.cs" />
+    <Compile Include="Assets\Scripts\Utility\ChangeCar.cs" />
+    <Compile Include="Assets\Scripts\Utility\DataManager.cs" />
+    <Compile Include="Assets\Scripts\Utility\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Utility\GroundType.cs" />
+    <Compile Include="Assets\Scripts\Utility\MenuRotation.cs" />
+    <Compile Include="Assets\Scripts\Utility\ResetCar.cs" />
     <Compile Include="Assets\Scripts\Utility\Restart.cs" />
+    <Compile Include="Assets\Scripts\Utility\TimedDestroyer.cs" />
+    <Compile Include="Assets\Scripts\Weapons\OnCarWeapon.cs" />
+    <Compile Include="Assets\Scripts\Weapons\RocketScript.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Shield.cs" />
+    <Compile Include="Assets\Scripts\Weapons\ShootWeapon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

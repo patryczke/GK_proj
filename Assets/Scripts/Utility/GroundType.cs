@@ -5,7 +5,8 @@ using System.Collections;
 public enum GroundTypes
 {
     Road,
-    Grass
+    Grass,
+    TiledFloor
 };
 
 public class GroundType : MonoBehaviour {
