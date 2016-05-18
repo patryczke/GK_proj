@@ -82,7 +82,9 @@
     <Compile Include="Assets\Scripts\Game\SpeedCounter.cs" />
     <Compile Include="Assets\Scripts\Game\Speedometer.cs" />
     <Compile Include="Assets\Scripts\Game\WheelVisual.cs" />
+    <Compile Include="Assets\Scripts\OwnImpls\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\OwnImpls\CustomPickupCollider.cs" />
+    <Compile Include="Assets\Scripts\OwnImpls\LapHolder.cs" />
     <Compile Include="Assets\Scripts\Particles\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\Particles\ParticleGoUp.cs" />
     <Compile Include="Assets\Scripts\Particles\ParticleMain.cs" />
