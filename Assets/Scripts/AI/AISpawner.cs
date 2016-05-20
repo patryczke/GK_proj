@@ -4,7 +4,7 @@ using System.Collections;
 public class AISpawner : MonoBehaviour {
     public GameObject AIPrefab;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Instantiate(AIPrefab, transform.position, transform.rotation);
 	}
 	

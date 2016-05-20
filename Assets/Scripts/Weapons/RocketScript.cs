@@ -28,7 +28,7 @@ public class RocketScript : MonoBehaviour {
             {
                 Debug.Log(hit.collider.gameObject);
             }
-            if (hit.collider.gameObject.transform != this.transform)
+            if (hit.collider.gameObject.transform != this.transform && !hit.collider.isTrigger)
             {
                 Destroy(gameObject);
             }

@@ -15,14 +15,14 @@ public class RaceTimer : MonoBehaviour
 
     Stopwatch stopwatch;
 
-    Text timerText;
+    public Text timerText;
 
     void Start()
     {
         timerText = gameObject.GetComponent<Text>();
         stopwatch = new Stopwatch();
 
-        TimeStart();    //it will be called from outside, when race starts
+        //TimeStart();    //it will be called from outside, when race starts
     }
 
     void Update()

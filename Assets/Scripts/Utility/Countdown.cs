@@ -7,7 +7,7 @@ public class Countdown : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-	
+	    
 	}
 	
 	// Update is called once per frame
@@ -17,6 +17,7 @@ public class Countdown : MonoBehaviour {
         if(timer <= 0f)
         {
             GetComponent<Text>().text = "";
+            FindObjectOfType<RaceTimer>().TimeStart();
         }
 	}
 }
